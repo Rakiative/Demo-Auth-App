@@ -1,0 +1,45 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Login
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Login into Google</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div>
+    <ion-row>
+      <ion-col>
+        <ion-button *ngIf="loginService.refresh_Access_token" (click)="loginService.logout()"
+          expand="block">Logout</ion-button>
+        <ion-button *ngIf="!loginService.refresh_Access_token" (click)="loginService.loginViaGoogle()"
+          expand="block">Login via
+          Google</ion-button>
+      </ion-col>
+    </ion-row>
+  </div>
+
+  <div>
+    <ion-row>
+      <ion-col>
+        <ion-label>Login Response:</ion-label>
+        <pre>{{ loginService.loginResponse }}</pre>
+      </ion-col>
+    </ion-row>
+  </div>
+
+  <div>
+    <ion-row>
+      <ion-col>
+        <ion-label>Access Token:</ion-label>
+        <ion-textarea>{{loginService.refresh_Access_token ?? 'No Token'}}</ion-textarea>
+      </ion-col>
+    </ion-row>
+  </div>
+</ion-content>
